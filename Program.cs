@@ -45,9 +45,11 @@ using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 }
 Console.WriteLine($"Record Count = {records.Count}\r");
 Console.WriteLine("_____________________________\r");
+//removes duplicates
+var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
 IEnumerable<Song> songQuery =
-    from song in records
+    from song in distinctItems
     orderby song.Plays
     where song.Year == new DateOnly(songYear,1,1)
     select song;
@@ -55,6 +57,18 @@ IEnumerable<Song> songQuery =
 var songQueryResults = songQuery.ToList();
 var songCountCount = songQueryResults.Count.ToString();
 Console.WriteLine(songCountCount);
+foreach (Song song in songQueryResults)
+{
+    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+}
+
+using (var writer = new StreamWriter("./Output.csv"))
+using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
+{
+    csvWriter.WriteRecords(songQueryResults);
+}
+Console.WriteLine("Done");
+
 
 /*
 
