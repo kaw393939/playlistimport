@@ -24,7 +24,7 @@ public class SongManager
 
     public static void UserChoosesColumns()
     {
-        Console.WriteLine("Enter what columns you want to view, seperated by space: ");
+        Console.WriteLine("\nEnter what columns you want to view, seperated by space: ");
         string columnChoices = Console.ReadLine();
         string[] columns = columnChoices.Split(' ');
         
@@ -37,11 +37,7 @@ public class SongManager
         var reader = new StreamReader(filePath);
         var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-        Console.WriteLine("Filepath: " + AppDomain.CurrentDomain.BaseDirectory);
-
         IEnumerable<dynamic> records = csv.GetRecords<dynamic>();
-
-// records = csv.GetRecord<dynamic>();
 
         foreach (var record in records)
         {
