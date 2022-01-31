@@ -1,14 +1,22 @@
 namespace playlistimport;
 
-public class New
+public class SongManager
 {
     /* create a menu of available columns
      * ask user to enter what columns they want top see
      * present the columns asked to the user
      */
-    public void PrintColumnOptions()
+    public static void PrintColumnOptions()
     {
-        
+        string[] options = { "name", "artist", "composer", "genre", "year", "plays" };
+
+        Console.WriteLine("Column Choices");
+        Console.WriteLine("--------------");
+
+        foreach (string option in options)
+        {
+            Console.WriteLine(option);
+        }
     }
 
     public void UserChoosesColumns()
