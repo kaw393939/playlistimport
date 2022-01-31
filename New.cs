@@ -19,12 +19,16 @@ public class SongManager
         }
     }
 
-    public void UserChoosesColumns()
+    public static void UserChoosesColumns()
     {
+        Console.WriteLine("Enter what columns you want to view, seperated by space: ");
+        string columnChoices = Console.ReadLine();
+        string[] columns = columnChoices.Split(' ');
         
+        PrintSelectedData(columns);
     }
 
-    public void PrintSelectedData()
+    public static void PrintSelectedData(string[] columns)
     {
         
     }
