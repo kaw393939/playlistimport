@@ -53,19 +53,19 @@ public class SongManager
                         Console.Write(record.Name);
                         break;
                     case "artist":
-                        Console.Write(record.Name);
+                        Console.Write(record.Artist);
                         break;
                     case "composer":
-                        Console.Write(record.Name);
+                        Console.Write(record.Compose);
                         break;
                     case "genre":
-                        Console.Write(record.Name);
+                        Console.Write(record.Genre);
                         break;
                     case "year":
-                        Console.Write(record.Name);
+                        Console.Write(record.Year);
                         break;
                     case "plays":
-                        Console.Write(record.Name);
+                        Console.Write(record.Plays);
                         break;
                 }
                 Console.WriteLine();
