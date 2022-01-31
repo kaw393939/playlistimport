@@ -1,3 +1,6 @@
+using System.Globalization;
+using CsvHelper;
+
 namespace playlistimport;
 
 public class SongManager
