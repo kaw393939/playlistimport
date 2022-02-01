@@ -5,10 +5,9 @@ namespace playlistimport;
 
 public class SongManager
 {
-    /* create a menu of available columns
-     * ask user to enter what columns they want top see
-     * present the columns asked to the user
-     */
+    /// <summary>
+    /// print available options for the user to choose from
+    /// </summary>
     public static void PrintColumnOptions()
     {
         string[] options = { "name", "artist", "composer", "genre", "year", "plays" };
@@ -22,23 +21,33 @@ public class SongManager
         }
     }
 
+    /// <summary>
+    /// ask the user to enter what columns they want to see and print accordingly
+    /// </summary>
     public static void UserChoosesColumns()
     {
-        Console.WriteLine("\nEnter what columns you want to view, seperated by space: ");
+        Console.Write("\nEnter what columns you want to view, seperated by space: ");
         string columnChoices = Console.ReadLine();
         string[] columns = columnChoices.Split(' ');
         
         PrintSelectedData(columns);
     }
 
+    /// <summary>
+    /// print data according to desired columns
+    /// </summary>
+    /// <param name="columns"></param>
     public static void PrintSelectedData(string[] columns)
     {
+        // read file as a csv
         const string filePath = "music.csv";
         var reader = new StreamReader(filePath);
         var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
+        // get a list of records from the data
         IEnumerable<dynamic> records = csv.GetRecords<dynamic>();
 
+        // print record data according to desired column
         foreach (var record in records)
         {
             foreach (string column in columns)
@@ -64,8 +73,9 @@ public class SongManager
                         Console.Write(record.Plays);
                         break;
                 }
-                Console.WriteLine();
+                Console.Write(" | ");
             }
+            Console.WriteLine();
         }
     }
 }
