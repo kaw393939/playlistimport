@@ -33,14 +33,11 @@ if (readYear != String.Empty)
 //Input of minimum plays to show in the result
 Console.WriteLine("Enter The minimum # of plays\r");
 var readPlays = Console.ReadLine();
+var minPlays = 0;
 if (readPlays != String.Empty)
 {
-    var minPlays = int.Parse(readPlays);
+    minPlays = int.Parse(readPlays);
     Console.WriteLine(minPlays);
-}
-else
-{
-    var minPlays = 0;
 }
 
 
@@ -71,6 +68,7 @@ IEnumerable<Song> songQuery =
     from song in distinctItems
     orderby song.Plays
     where song.Year == new DateOnly(songYear,1,1)
+    where song.Plays >= minPlays
     select song;
 
 var songQueryResults = songQuery.ToList();
@@ -78,7 +76,7 @@ var songCountCount = songQueryResults.Count.ToString();
 Console.WriteLine(songCountCount);
 foreach (Song song in songQueryResults)
 {
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    Console.WriteLine("{0},{1}, {2}, Plays:{3}",song.Name,song.Artist, song.Genre, song.Plays);
 }
 
 using (var writer = new StreamWriter("./Output.csv"))
