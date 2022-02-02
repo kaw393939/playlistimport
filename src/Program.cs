@@ -2,8 +2,6 @@
 
 using System.Globalization;
 using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 using playlistimport;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
