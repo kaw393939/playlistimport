@@ -16,6 +16,10 @@ if (filePath == "")
 {
     absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
 }
+else
+{
+    absoluteFilePath = filePath;
+}
 
 Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
