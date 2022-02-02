@@ -9,35 +9,48 @@ using playlistimport;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
-Console.WriteLine("Enter The Absolute File Path for the playlist\r");
-var absoluteFilePath = "";
-var filePath = Console.ReadLine();
-if (filePath == "")
+void Run()
 {
-    absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
+    var records = ReadRecords(GetFilePath());
+    var songQuery = SongQueryByYear(records, GetYear());
+    WriteSongListToCsv(songQuery);
 }
 
-Console.WriteLine("Enter The year\r");
-var readYear = Console.ReadLine();
-var songYear = 2015;
-if (!string.IsNullOrEmpty(readYear))
+string GetFilePath()
 {
-    songYear = int.Parse(readYear);
-    Console.WriteLine(songYear);
+    Console.WriteLine("Enter The Absolute File Path for the playlist\r");
+    var filePath = Console.ReadLine();
+    return string.IsNullOrEmpty(filePath) ? "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv" : filePath;
 }
 
-List<Song> records;
-
-using (var reader = new StreamReader(absoluteFilePath))
-using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+int GetYear()
 {
-    csv.Context.RegisterClassMap<SongMap>();
-    Console.WriteLine("Reading the CSV File\r");
-    records = csv.GetRecords<Song>().ToList();
+    Console.WriteLine("Enter The year\r");
+    var readYear = Console.ReadLine();
+    return !string.IsNullOrEmpty(readYear) ? int.Parse(readYear) : 2015;
 }
 
-Console.WriteLine($"Record Count = {records.Count}\r");
-Console.WriteLine("_____________________________\r");
+List<Song> ReadRecords(string filePath)
+{
+    List<Song> records;
+    using (var reader = new StreamReader(filePath))
+    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+    {
+        csv.Context.RegisterClassMap<SongMap>();
+        Console.WriteLine("Reading the CSV File\r");
+        records = csv.GetRecords<Song>().ToList();
+    }
+
+    Console.WriteLine($"Record Count = {records.Count}\r");
+    Console.WriteLine("_____________________________\r");
+
+    records = RemoveDuplicateSongs(records);
+    
+    Console.WriteLine($"Distinct Record Count = {records.Count}\r");
+    Console.WriteLine("_____________________________\r");
+
+    return records;
+}
 
 List<Song> RemoveDuplicateSongs(List<Song> list)
 {
@@ -45,26 +58,34 @@ List<Song> RemoveDuplicateSongs(List<Song> list)
     return distinctItems.ToList();
 }
 
-var distinctItems = RemoveDuplicateSongs(records);
-
-//https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
-IEnumerable<Song> songQuery =
-    from song in distinctItems
-    orderby song.Plays
-    where song.Year == new DateOnly(songYear,1,1)
-    select song;
-
-var songQueryResults = songQuery.ToList();
-var songCountCount = songQueryResults.Count.ToString();
-Console.WriteLine(songCountCount);
-foreach (Song song in songQueryResults)
+List<Song> SongQueryByYear(List<Song> songs, int year)
 {
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
+    IEnumerable<Song> songQuery =
+        from song in songs
+        orderby song.Plays
+        where song.Year == new DateOnly(year,1,1)
+        select song;
+
+    var songQueryResults = songQuery.ToList();
+    var songCountCount = songQueryResults.Count.ToString();
+    Console.WriteLine(songCountCount);
+    foreach (Song song in songQueryResults)
+    {
+        Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    }
+
+    return songQueryResults;
 }
 
-using (var writer = new StreamWriter("./Output.csv"))
-using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
+void WriteSongListToCsv(List<Song> songs)
 {
-    csvWriter.WriteRecords(songQueryResults);
+    using (var writer = new StreamWriter("./Output.csv"))
+    using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
+    {
+        csvWriter.WriteRecords(songs);
+    }
+    Console.WriteLine("Done Writing");
 }
-Console.WriteLine("Done");
+
+Run();
