@@ -29,6 +29,21 @@ if (readYear != String.Empty)
     songYear = int.Parse(readYear);
     Console.WriteLine(songYear);
 }
+
+//Input of minimum plays to show in the result
+Console.WriteLine("Enter The minimum # of plays\r");
+var readPlays = Console.ReadLine();
+if (readPlays != String.Empty)
+{
+    var minPlays = int.Parse(readPlays);
+    Console.WriteLine(minPlays);
+}
+else
+{
+    var minPlays = 0;
+}
+
+
 //here is creating a new list type using a function
 var records = CreateNewListOfType<Song>();
 
