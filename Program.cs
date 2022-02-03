@@ -4,7 +4,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-
+using Utilities;
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
 //box when you create it and just add it in the project solution directory
@@ -27,7 +27,7 @@ var songYear = 2015;
 if (readYear != String.Empty)
 {
     songYear = int.Parse(readYear);
-    Console.WriteLine(songYear);
+    ConsoleWrite.WriteToConsole(songYear.ToString());
 }
 
 //Input of minimum plays to show in the result
