@@ -11,8 +11,8 @@ using Utilities;
 //put the path to the file you want to import
 Console.WriteLine("Enter The Absolute File Path for the playlist\r");
 var absoluteFilePath = "";
-var filePath = Console.ReadLine();
-if (filePath == "")
+absoluteFilePath = Console.ReadLine();
+if (absoluteFilePath == "")
 {
     absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
 }

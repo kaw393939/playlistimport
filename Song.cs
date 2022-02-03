@@ -1,6 +1,4 @@
-﻿namespace playlistimport;
-
-public class Song
+﻿public class Song
 {
     public string Name { get; set; }
     public string Artist { get; set; }
