@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilties\\utilties.csproj": {}
+    "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilites\\utilites.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilties\\utilties.csproj": {
+    "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilites\\utilites.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilties\\utilties.csproj",
-        "projectName": "utilties",
-        "projectPath": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilties\\utilties.csproj",
+        "projectUniqueName": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilites\\utilites.csproj",
+        "projectName": "utilites",
+        "projectPath": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilites\\utilites.csproj",
         "packagesPath": "C:\\Users\\idota\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilties\\obj\\",
+        "outputPath": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilites\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -40,6 +40,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[27.2.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

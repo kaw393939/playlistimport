@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "utilties", "utilties\utilties.csproj", "{FC59E2B8-1688-4FA1-959E-CC962929D286}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "utilites", "utilites\utilites.csproj", "{FC59E2B8-1688-4FA1-959E-CC962929D286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "playlistimport", "playlistimport\playlistimport.csproj", "{8057AD05-E84C-4737-8C20-B9F48E34D0F8}"
 EndProject
