@@ -17,7 +17,7 @@ if (absoluteFilePath == "")
     absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
 }
 
-Console.WriteLine("Enter The year\r");
+ConsoleWrite.WriteToConsole("Enter The year\r");
 var readYear = Console.ReadLine();
 var songYear = 2015;
 if (readYear != String.Empty)
@@ -39,12 +39,12 @@ using (var reader = new StreamReader(absoluteFilePath))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     csv.Context.RegisterClassMap<SongMap>();
-    Console.WriteLine("Reading the CSV File\r");
+    ConsoleWrite.WriteToConsole("Reading the CSV File\r");
     records = csv.GetRecords<Song>().ToList();
 
 }
-Console.WriteLine($"Record Count = {records.Count}\r");
-Console.WriteLine("_____________________________\r");
+ConsoleWrite.WriteToConsole($"Record Count = {records.Count}\r");
+ConsoleWrite.WriteToConsole("_____________________________\r");
 //removes duplicates
 var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
@@ -56,10 +56,11 @@ IEnumerable<Song> songQuery =
 
 var songQueryResults = songQuery.ToList();
 var songCountCount = songQueryResults.Count.ToString();
-Console.WriteLine(songCountCount);
+ConsoleWrite.WriteToConsole(songCountCount);
 foreach (Song song in songQueryResults)
 {
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    var message = String.Format("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    ConsoleWrite.WriteToConsole(message);
 }
 
 using (var writer = new StreamWriter("./Output.csv"))
@@ -67,7 +68,7 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 {
     csvWriter.WriteRecords(songQueryResults);
 }
-Console.WriteLine("Done");
+ConsoleWrite.WriteToConsole("Done");
 
 
 /*
