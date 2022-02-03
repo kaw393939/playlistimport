@@ -3,8 +3,8 @@
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 using Utilities;
+using Convertors;
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
 //box when you create it and just add it in the project solution directory
@@ -101,20 +101,5 @@ public class SongMap : ClassMap<Song>
         Map(m => m.Genre);
         Map(m => m.Year).TypeConverter<CustomDateYearConverter>();
         Map(m => m.Plays).TypeConverter<CustomIntConverter>();
-    }
-}
-
-public class CustomIntConverter : DefaultTypeConverter
-{
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-    {
-        if (text != "")
-        {
-            return int.Parse(text);
-        }
-        else
-        {
-            return 0;
-        }
     }
 }

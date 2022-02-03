@@ -4,21 +4,17 @@ using CsvHelper;
 
 namespace Convertors;
 
-public class CustomDateYearConverter : DefaultTypeConverter
+public class CustomIntConverter : DefaultTypeConverter
 {
     public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
     {
         if (text != "")
         {
-            var year = int.Parse(text);
-
-            var date = new DateOnly(year, 1, 1);
-            return date;
+            return int.Parse(text);
         }
         else
         {
-            var date = new DateOnly(1, 1, 1);
-            return date;
+            return 0;
         }
     }
 }
