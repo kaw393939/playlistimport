@@ -11,14 +11,14 @@ using Converters;
 //put the path to the file you want to import
 Console.WriteLine("Enter The Absolute File Path for the playlist\r");
 var absoluteFilePath = "";
-absoluteFilePath = Console.ReadLine();
+absoluteFilePath = ConsoleRead.ReadConsole();
 if (absoluteFilePath == "")
 {
     absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
 }
 
 ConsoleWrite.WriteToConsole("Enter The year\r");
-var readYear = Console.ReadLine();
+var readYear = ConsoleRead.ReadConsole();
 var songYear = 2015;
 if (readYear != String.Empty)
 {
@@ -55,7 +55,6 @@ IEnumerable<Song> songQuery =
 
 var songQueryResults = songQuery.ToList();
 var songCountCount = songQueryResults.Count.ToString();
-ConsoleWrite.WriteToConsole(songCountCount);
 foreach (Song song in songQueryResults)
 {
     var message = String.Format("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
