@@ -2,7 +2,7 @@
 using CsvHelper.Configuration;
 using CsvHelper;
 
-namespace Convertors;
+namespace Converters;
 
 public class CustomIntConverter : DefaultTypeConverter
 {
