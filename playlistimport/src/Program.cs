@@ -3,6 +3,7 @@
 using System.Globalization;
 using CsvHelper;
 using playlistimport;
+using utilites;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
@@ -13,20 +14,20 @@ void Run()
 {
     var records = ReadRecords(GetFilePath());
     var songQuery = SongQueryByYear(records, GetYear());
-    WriteSongListToCsv(songQuery);
+    
+    Utilities.WriteToCSV(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery);
+    Utilities.ConsoleWrite("Done Writing!");
 }
 
 string GetFilePath()
 {
-    Console.WriteLine("Enter The Absolute File Path for the playlist\r");
-    var filePath = Console.ReadLine();
+    var filePath = Utilities.ConsoleReadLineWithMessage("Enter The Absolute File Path for the playlist\r");
     return string.IsNullOrEmpty(filePath) ? "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv" : filePath;
 }
 
 int GetYear()
 {
-    Console.WriteLine("Enter The year\r");
-    var readYear = Console.ReadLine();
+    var readYear = Utilities.ConsoleReadLineWithMessage("Enter The year\r");
     return !string.IsNullOrEmpty(readYear) ? int.Parse(readYear) : 2015;
 }
 
@@ -37,17 +38,17 @@ List<Song> ReadRecords(string filePath)
     using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
     {
         csv.Context.RegisterClassMap<SongMap>();
-        Console.WriteLine("Reading the CSV File\r");
+        Utilities.ConsoleWrite("Reading the CSV File\r");
         records = csv.GetRecords<Song>().ToList();
     }
 
-    Console.WriteLine($"Record Count = {records.Count}\r");
-    Console.WriteLine("_____________________________\r");
+    Utilities.ConsoleWrite($"Record Count = {records.Count}\r");
+    Utilities.ConsoleWrite("_____________________________\r");
 
     records = RemoveDuplicateSongs(records);
     
-    Console.WriteLine($"Distinct Record Count = {records.Count}\r");
-    Console.WriteLine("_____________________________\r");
+    Utilities.ConsoleWrite($"Distinct Record Count = {records.Count}\r");
+    Utilities.ConsoleWrite("_____________________________\r");
 
     return records;
 }
@@ -69,23 +70,13 @@ List<Song> SongQueryByYear(List<Song> songs, int year)
 
     var songQueryResults = songQuery.ToList();
     var songCountCount = songQueryResults.Count.ToString();
-    Console.WriteLine(songCountCount);
+    Utilities.ConsoleWrite(songCountCount);
     foreach (Song song in songQueryResults)
     {
-        Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+        Utilities.ConsoleWrite("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
     }
 
     return songQueryResults;
-}
-
-void WriteSongListToCsv(List<Song> songs)
-{
-    using (var writer = new StreamWriter("./Output.csv"))
-    using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
-    {
-        csvWriter.WriteRecords(songs);
-    }
-    Console.WriteLine("Done Writing");
 }
 
 Run();
