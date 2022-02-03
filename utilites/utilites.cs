@@ -38,10 +38,4 @@ public class Utilities
             csvWriter.WriteRecords(message);
         }
     }
-
-    public static List<T> CreateNewList<T>()
-    {
-        List<T> records = new List<T>();
-        return records;
-    }
 }
