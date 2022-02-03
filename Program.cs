@@ -2,9 +2,7 @@
 
 using System.Globalization;
 using CsvHelper;
-using CsvHelper.Configuration;
 using Utilities;
-using Converters;
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
 //box when you create it and just add it in the project solution directory
@@ -80,15 +78,3 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
     csvWriter.WriteRecords(songQuery);
 }
 */
-public class SongMap : ClassMap<Song>
-{
-    public SongMap()
-    {
-        Map(m => m.Name);
-        Map(m => m.Artist);
-        Map(m => m.Composer);
-        Map(m => m.Genre);
-        Map(m => m.Year).TypeConverter<CustomDateYearConverter>();
-        Map(m => m.Plays).TypeConverter<CustomIntConverter>();
-    }
-}
