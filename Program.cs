@@ -16,6 +16,10 @@ if (filePath == "")
 {
     absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
 }
+else
+{
+    absoluteFilePath = filePath;
+}
 
 Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
@@ -25,6 +29,18 @@ if (readYear != String.Empty)
     songYear = int.Parse(readYear);
     ConsoleWrite.WriteToConsole(songYear.ToString());
 }
+
+//Input of minimum plays to show in the result
+Console.WriteLine("Enter The minimum # of plays\r");
+var readPlays = Console.ReadLine();
+var minPlays = 0;
+if (readPlays != String.Empty)
+{
+    minPlays = int.Parse(readPlays);
+    Console.WriteLine(minPlays);
+}
+
+
 //here is creating a new list type using a function
 var records = CreateNewListOfType<Song>();
 
@@ -52,6 +68,7 @@ IEnumerable<Song> songQuery =
     from song in distinctItems
     orderby song.Plays
     where song.Year == new DateOnly(songYear,1,1)
+    where song.Plays >= minPlays
     select song;
 
 var songQueryResults = songQuery.ToList();
@@ -59,7 +76,7 @@ var songCountCount = songQueryResults.Count.ToString();
 Console.WriteLine(songCountCount);
 foreach (Song song in songQueryResults)
 {
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    Console.WriteLine("{0},{1}, {2}, Plays:{3}",song.Name,song.Artist, song.Genre, song.Plays);
 }
 
 using (var writer = new StreamWriter("./Output.csv"))
