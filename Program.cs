@@ -23,7 +23,6 @@ var songYear = 2015;
 if (readYear != String.Empty)
 {
     songYear = int.Parse(readYear);
-    ConsoleWrite.WriteToConsole(songYear.ToString());
 }
 //here is creating a new list type using a function
 var records = CreateNewListOfType<Song>();
@@ -68,17 +67,7 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 {
     csvWriter.WriteRecords(songQueryResults);
 }
-ConsoleWrite.WriteToConsole("Done");
-
-
 /*
-
-
-
-
-
-
-
 foreach (Song song in songQuery)
 {
     Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
