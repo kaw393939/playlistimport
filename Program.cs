@@ -40,15 +40,6 @@ public class Music
 
 Music.GetFile("/Users/mandd/RiderProjects/playlistimport/data/music.csv");
 
-Consoles.WriteConsole("Enter The Absolute File Path for the playlist\r");
-var absoluteFilePath = "";
-var filePath = Console.ReadLine();
-if (filePath == "")
-{
-    absoluteFilePath = "/Users/mandd/RiderProjects/playlistimport/data/music.csv";
-}
-
-
 Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
 var songYear = 2015;
