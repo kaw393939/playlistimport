@@ -21,7 +21,7 @@ public class Consoles
 
 public class Music 
 {
-    WriteConsole("Enter The Absolute File Path for the playlist\r");
+    Consoles.WriteConsole("Enter The Absolute File Path for the playlist\r");
     var absoluteFilePath = "";
     var filePath = Console.ReadLine();
         
@@ -36,7 +36,7 @@ public class Music
 
 Music.GetFile("/Users/mandd/RiderProjects/playlistimport/data/music.csv");
 
-WriteConsole("Enter The Absolute File Path for the playlist\r");
+Consoles.WriteConsole("Enter The Absolute File Path for the playlist\r");
 var absoluteFilePath = "";
 var filePath = Console.ReadLine();
 if (filePath == "")
@@ -51,7 +51,7 @@ var songYear = 2015;
 if (readYear != String.Empty)
 {
     songYear = int.Parse(readYear);
-    WriteConsole(songYear);
+    Consoles.WriteConsole(songYear);
 }
 //here is creating a new list type using a function
 var records = CreateNewListOfType<Song>();
@@ -67,12 +67,12 @@ using (var reader = new StreamReader(absoluteFilePath))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     csv.Context.RegisterClassMap<SongMap>();
-    WriteConsole("Reading the CSV File\r");
+    Consoles.WriteConsole("Reading the CSV File\r");
     records = csv.GetRecords<Song>().ToList();
 
 }
-WriteConsole($"Record Count = {records.Count}\r");
-WriteConsole("_____________________________\r");
+Consoles.WriteConsole($"Record Count = {records.Count}\r");
+Consoles.WriteConsole("_____________________________\r");
 //removes duplicates
 var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
@@ -84,10 +84,10 @@ IEnumerable<Song> songQuery =
 
 var songQueryResults = songQuery.ToList();
 var songCountCount = songQueryResults.Count.ToString();
-WriteConsole(songCountCount);
+Consoles.WriteConsole(songCountCount);
 foreach (Song song in songQueryResults)
 {
-    WriteConsole("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    Consoles.WriteConsole("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
 }
 
 using (var writer = new StreamWriter("./Output.csv"))
@@ -95,7 +95,7 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 {
     csvWriter.WriteRecords(songQueryResults);
 }
-WriteConsole("Done");
+Consoles.WriteConsole("Done");
 
 
 /*
