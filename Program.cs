@@ -12,10 +12,12 @@ using CsvHelper.TypeConversion;
 
 public class Consoles
 {
+    //function to write to console
     public static void WriteConsole(string message)
     {
         Console.WriteLine(message);
     }
+    //function to accept user input from console
     public static string ReadConsole(string message)
     {
         return Console.ReadLine();
@@ -25,8 +27,9 @@ public class Consoles
 
 public class Music 
 {
-    //sets up variables
+    //asks for file path input from user
     Consoles.WriteConsole("Enter The Absolute File Path for the playlist\r");
+    //sets up variables
     var absoluteFilePath = "";
     var filePath = Consoles.ReadLine();
     public void GetFile(string message)
@@ -137,6 +140,7 @@ public class CustomIntConverter : DefaultTypeConverter
 //converting for year
 public class CustomDateYearConverter : DefaultTypeConverter
 {
+    //made function CreateData to simplify the ConvertFromString function
     public list CreateDate(int year){
     var date = new DateOnly(var<year>, 1, 1);
         return date;
