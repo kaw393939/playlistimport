@@ -9,12 +9,21 @@ using CsvHelper.TypeConversion;
 //if you are doing this from scratch or you can create the project with the solution by checking that
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
-Console.WriteLine("Enter The Absolute File Path for the playlist\r");
+
+public class Consoles
+{
+    public static void WriteConsole(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
+WriteConsole("Enter The Absolute File Path for the playlist\r");
 var absoluteFilePath = "";
 var filePath = Console.ReadLine();
 if (filePath == "")
 {
-    absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
+    absoluteFilePath = "/Users/mandd/RiderProjects/playlistimport/data/music.csv";
 }
 
 Console.WriteLine("Enter The year\r");
@@ -23,7 +32,7 @@ var songYear = 2015;
 if (readYear != String.Empty)
 {
     songYear = int.Parse(readYear);
-    Console.WriteLine(songYear);
+    WriteConsole(songYear);
 }
 //here is creating a new list type using a function
 var records = CreateNewListOfType<Song>();
@@ -39,12 +48,12 @@ using (var reader = new StreamReader(absoluteFilePath))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     csv.Context.RegisterClassMap<SongMap>();
-    Console.WriteLine("Reading the CSV File\r");
+    WriteConsole("Reading the CSV File\r");
     records = csv.GetRecords<Song>().ToList();
 
 }
-Console.WriteLine($"Record Count = {records.Count}\r");
-Console.WriteLine("_____________________________\r");
+WriteConsole($"Record Count = {records.Count}\r");
+WriteConsole("_____________________________\r");
 //removes duplicates
 var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
@@ -56,10 +65,10 @@ IEnumerable<Song> songQuery =
 
 var songQueryResults = songQuery.ToList();
 var songCountCount = songQueryResults.Count.ToString();
-Console.WriteLine(songCountCount);
+WriteConsole(songCountCount);
 foreach (Song song in songQueryResults)
 {
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    WriteConsole("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
 }
 
 using (var writer = new StreamWriter("./Output.csv"))
@@ -67,27 +76,20 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 {
     csvWriter.WriteRecords(songQueryResults);
 }
-Console.WriteLine("Done");
+WriteConsole("Done");
 
 
 /*
-
-
-
-
-
-
-
 foreach (Song song in songQuery)
 {
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+    WriteConsole("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
 }
 Console.WriteLine($"Record Count = {songQuery.Count()}\r");
 
 using (var writer = new StreamWriter("./Output.csv"))
 using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 {
-    Console.WriteLine($"Record Count = {songQuery.Count()}\r");
+    WriteConsole($"Record Count = {songQuery.Count()}\r");
     csvWriter.WriteRecords(songQuery);
 }
 */
@@ -121,19 +123,24 @@ public class CustomIntConverter : DefaultTypeConverter
 //converting for year
 public class CustomDateYearConverter : DefaultTypeConverter
 {
+    public list CreateDate(int year){
+    var date = new DateOnly(var<year>, 1, 1);
+        return date;
+    }
     public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
     {
         if (text != "")
         {
             var year = int.Parse(text);
-
-            var date = new DateOnly(year, 1, 1);
-            return date;
+            CreateDate(year);
+            //var date = new DateOnly(year, 1, 1);
+            //return date;
         }
         else
         {
-            var date = new DateOnly(1, 1, 1);
-            return date;
+            CreateDate(1);
+            //var date = new DateOnly(1, 1, 1);
+            //return date;
         }
     }
 }
