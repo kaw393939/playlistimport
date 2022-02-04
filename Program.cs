@@ -18,6 +18,22 @@ public class Consoles
     }
 }
 
+
+public class Music 
+{
+    WriteConsole("Enter The Absolute File Path for the playlist\r");
+    var absoluteFilePath = "";
+    var filePath = Console.ReadLine();
+        
+    public void GetFile(string message)
+    {
+        if (filePath == "")
+        {
+            absoluteFilePath = "/Users/mandd/RiderProjects/playlistimport/data/music.csv";
+        }
+    }
+}
+
 WriteConsole("Enter The Absolute File Path for the playlist\r");
 var absoluteFilePath = "";
 var filePath = Console.ReadLine();
@@ -25,6 +41,7 @@ if (filePath == "")
 {
     absoluteFilePath = "/Users/mandd/RiderProjects/playlistimport/data/music.csv";
 }
+
 
 Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
