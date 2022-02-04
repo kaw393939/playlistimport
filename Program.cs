@@ -16,15 +16,19 @@ public class Consoles
     {
         Console.WriteLine(message);
     }
+    public static string ReadConsole(string message)
+    {
+        return Console.ReadLine();
+    }
 }
 
 
 public class Music 
 {
+    //sets up variables
     Consoles.WriteConsole("Enter The Absolute File Path for the playlist\r");
     var absoluteFilePath = "";
-    var filePath = Console.ReadLine();
-        
+    var filePath = Consoles.ReadLine();
     public void GetFile(string message)
     {
         if (!filePath)
