@@ -1,4 +1,7 @@
-﻿namespace playlistimport;
+﻿using CsvHelper.Configuration;
+using playlistimport.Classes;
+
+namespace playlistimport.Classes;
 
 public class SongMap : ClassMap<Song>
 {

@@ -1,4 +1,8 @@
-﻿namespace playlistimport;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
+
+namespace playlistimport.Classes;
 
 public class CustomDateYearConverter : DefaultTypeConverter
 {
