@@ -64,17 +64,3 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 {
     csvWriter.WriteRecords(songQueryResults);
 }
-/*
-foreach (Song song in songQuery)
-{
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
-}
-Console.WriteLine($"Record Count = {songQuery.Count()}\r");
-
-using (var writer = new StreamWriter("./Output.csv"))
-using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
-{
-    Console.WriteLine($"Record Count = {songQuery.Count()}\r");
-    csvWriter.WriteRecords(songQuery);
-}
-*/
