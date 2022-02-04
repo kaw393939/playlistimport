@@ -27,12 +27,14 @@ public class Music
         
     public void GetFile(string message)
     {
-        if (filePath == "")
+        if (!filePath)
         {
-            absoluteFilePath = "/Users/mandd/RiderProjects/playlistimport/data/music.csv";
+            absoluteFilePath = message;
         }
     }
 }
+
+Music.GetFile("/Users/mandd/RiderProjects/playlistimport/data/music.csv");
 
 WriteConsole("Enter The Absolute File Path for the playlist\r");
 var absoluteFilePath = "";
