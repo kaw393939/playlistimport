@@ -9,13 +9,7 @@ using CsvHelper.TypeConversion;
 //if you are doing this from scratch or you can create the project with the solution by checking that
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
-Console.WriteLine("Enter The Absolute File Path for the playlist\r");
-var absoluteFilePath = "";
-var filePath = Console.ReadLine();
-if (filePath == "")
-{
-    absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
-}
+var filename = "music.csv";
 
 Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
@@ -35,7 +29,7 @@ List<T> CreateNewListOfType<T>()
 }
 
 IEnumerable<Song> songs = new List<Song>();
-using (var reader = new StreamReader(absoluteFilePath))
+using (var reader = new StreamReader(filename))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     csv.Context.RegisterClassMap<SongMap>();
