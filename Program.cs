@@ -4,6 +4,7 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using static Utilities.ListUtilities;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
@@ -22,20 +23,12 @@ if (readYear != String.Empty)
 //here is creating a new list type using a function
 var records = CreateNewListOfType<Song>();
 
-List<T> CreateNewListOfType<T>()
-{
-    List<T> records = new List<T>();
-    return records;
-}
-
-IEnumerable<Song> songs = new List<Song>();
 using (var reader = new StreamReader(filename))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     csv.Context.RegisterClassMap<SongMap>();
     Console.WriteLine("Reading the CSV File\r");
     records = csv.GetRecords<Song>().ToList();
-
 }
 Console.WriteLine($"Record Count = {records.Count}\r");
 Console.WriteLine("_____________________________\r");
