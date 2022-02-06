@@ -3,7 +3,7 @@
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
+using Utilities;
 using static Utilities.ListUtilities;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
@@ -56,28 +56,6 @@ using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
 }
 Console.WriteLine("Done");
 
-
-/*
-
-
-
-
-
-
-
-foreach (Song song in songQuery)
-{
-    Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
-}
-Console.WriteLine($"Record Count = {songQuery.Count()}\r");
-
-using (var writer = new StreamWriter("./Output.csv"))
-using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
-{
-    Console.WriteLine($"Record Count = {songQuery.Count()}\r");
-    csvWriter.WriteRecords(songQuery);
-}
-*/
 public class SongMap : ClassMap<Song>
 {
     public SongMap()
@@ -88,40 +66,6 @@ public class SongMap : ClassMap<Song>
         Map(m => m.Genre);
         Map(m => m.Year).TypeConverter<CustomDateYearConverter>();
         Map(m => m.Plays).TypeConverter<CustomIntConverter>();
-    }
-}
-
-public class CustomIntConverter : DefaultTypeConverter
-{
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-    {
-        if (text != "")
-        {
-            return int.Parse(text);
-        }
-        else
-        {
-            return 0;
-        }
-    }
-}
-//converting for year
-public class CustomDateYearConverter : DefaultTypeConverter
-{
-    public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-    {
-        if (text != "")
-        {
-            var year = int.Parse(text);
-
-            var date = new DateOnly(year, 1, 1);
-            return date;
-        }
-        else
-        {
-            var date = new DateOnly(1, 1, 1);
-            return date;
-        }
     }
 }
 
