@@ -43,7 +43,7 @@ public class SongManager
         var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
         // get a list of records from the data
-        IEnumerable<dynamic> records = csv.GetRecords<dynamic>();
+        IEnumerable<Song> records = csv.GetRecords<Song>();
 
         // print record data according to desired column
         foreach (var record in records)
@@ -59,7 +59,7 @@ public class SongManager
                         Console.Write(record.Artist);
                         break;
                     case "composer":
-                        Console.Write(record.Compose);
+                        Console.Write(record.Composer);
                         break;
                     case "genre":
                         Console.Write(record.Genre);
