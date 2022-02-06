@@ -21,7 +21,7 @@ if (readYear != String.Empty)
     Console.WriteLine(songYear);
 }
 //here is creating a new list type using a function
-var records = CreateNewListOfType<Song>();
+var records = CreateListOfType<Song>();
 
 using (var reader = new StreamReader(filename))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
