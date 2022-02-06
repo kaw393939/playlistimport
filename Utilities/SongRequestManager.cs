@@ -4,7 +4,7 @@ using static Utilities.ListUtilities;
 
 namespace Utilities;
 
-public class SongManager
+public class SongRequestManager
 {
     /// <summary>
     /// print available options for the user to choose from
