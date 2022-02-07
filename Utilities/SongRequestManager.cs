@@ -4,6 +4,9 @@ using static Utilities.ListUtilities;
 
 namespace Utilities;
 
+/// <summary>
+/// manages logic for reading and writing music data from a csv file
+/// </summary>
 public class SongRequestManager
 {
     /// <summary>
@@ -22,24 +25,24 @@ public class SongRequestManager
     /// <summary>
     /// ask the user to enter what columns they want to see and print accordingly
     /// </summary>
-    public static void UserChoosesColumns()
+    public static void UserChoosesColumns(string filename)
     {
         Console.Write("\nEnter what columns you want to view, seperated by space: ");
         string columnChoices = Console.ReadLine();
         string[] columns = columnChoices.Split(' ');
         
-        PrintSelectedData(columns);
+        PrintSelectedData(columns, filename);
     }
 
     /// <summary>
     /// print data according to desired columns
     /// </summary>
     /// <param name="columns"></param>
-    public static void PrintSelectedData(string[] columns)
+    private static void PrintSelectedData(string[] columns, string filename)
+
     {
         // read file as a csv
-        const string filePath = "music.csv";
-        var reader = new StreamReader(filePath);
+        var reader = new StreamReader(filename);
         var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
         // get a list of records from the data
@@ -71,13 +74,18 @@ public class SongRequestManager
                         Console.Write(record.Plays);
                         break;
                 }
+
                 Console.Write(" | ");
             }
+
             Console.WriteLine();
         }
     }
 }
 
+/// <summary>
+/// representative of 6 of the most "important" columns in a file with song data
+/// </summary>
 public class Song
 {
     public string Name { get; set; }
