@@ -5,8 +5,8 @@ using Utilities;
 var filename = "music.csv";
 
 SongRequestManager.PrintColumnOptions();
-SongRequestManager.UserChoosesColumns();
+SongRequestManager.UserChoosesColumns(filename);
 
 // var records = CsvHandler.Read<Song>(filename);
-// CsvHandler.Write<Song>(records);
+// CsvHandler.Write<Song>(records, true);
 
