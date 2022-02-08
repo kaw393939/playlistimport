@@ -1,34 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Globalization;
-using CsvHelper;
+using Utilities;
 
-//you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
-//if you are doing this from scratch or you can create the project with the solution by checking that
-//box when you create it and just add it in the project solution directory
+// files must be copied to output directory so they can be referred to by relative path
+var filename = "music.csv";
 
-//put the path to the file you want to import
+Console.WriteLine($"Hello {filename}");
 
-var reader = new StreamReader("../../../data/music.csv");
-var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-var records = csv.GetRecords<Song>();
+SongRequestManager.PrintColumnOptions();
+SongRequestManager.UserChoosesColumns(filename);
 
-foreach (var record in records)
-{
-    Console.WriteLine(record.Name+" || "+record.Artist);
-}
+// var records = CsvHandler.Read<Song>(filename);
+// CsvHandler.Write<Song>(records, true);
 
-public class Song
-{
-    public string Name { get; set; }
-    public string Artist { get; set; }
-    
-    public string Composer { get; set; }
-
-    public string Genre { get; set; }
-    
-    public string Year { get; set; }
-
-    public string Plays { get; set; }
-
-}
