@@ -1,5 +1,3 @@
-using System.Globalization;
-using CsvHelper;
 using static Utilities.ListUtilities;
 
 namespace Utilities;
@@ -39,19 +37,14 @@ public class SongRequestManager
     /// </summary>
     /// <param name="columns"></param>
     private static void PrintSelectedData(string[] columns, string filename)
-
     {
         // read file as a csv
-        var reader = new StreamReader(filename);
-        var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-
-        // get a list of records from the data
-        IEnumerable<Song> records = csv.GetRecords<Song>();
+        var records = CsvHandler.Read<Song>(filename);
 
         // print record data according to desired column
         foreach (var record in records)
         {
-            foreach (string column in columns)
+            foreach (var column in columns)
             {
                 switch (column)
                 {
