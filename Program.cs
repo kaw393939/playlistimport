@@ -23,23 +23,10 @@ if (readYear != String.Empty)
     songYear = int.Parse(readYear);
 }
 //here is creating a new list type using a function
-var records = CreateNewListOfType<Song>();
 
-List<T> CreateNewListOfType<T>()
-{
-    List<T> records = new List<T>();
-    return records;
-}
 
-IEnumerable<Song> songs = new List<Song>();
-using (var reader = new StreamReader(absoluteFilePath))
-using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-{
-    csv.Context.RegisterClassMap<SongMap>();
-    ConsoleWrite.WriteToConsole("Reading the CSV File\r");
-    records = csv.GetRecords<Song>().ToList();
+var records = CSVRead.FromPath<Song, SongMap>(absoluteFilePath); 
 
-}
 ConsoleWrite.WriteToConsole($"Record Count = {records.Count}\r");
 ConsoleWrite.WriteToConsole("_____________________________\r");
 //removes duplicates
