@@ -4,6 +4,9 @@ using CsvHelper.TypeConversion;
 
 namespace Utilities;
 
+/// <summary>
+/// converts data from string to int
+/// </summary>
 public class CustomIntConverter : DefaultTypeConverter
 {
     public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
@@ -12,13 +15,13 @@ public class CustomIntConverter : DefaultTypeConverter
         {
             return int.Parse(text);
         }
-        else
-        {
-            return 0;
-        }
+        return 0;
     }
 }
-//converting for year
+
+/// <summary>
+/// converting from string to date
+/// </summary>
 public class CustomDateYearConverter : DefaultTypeConverter
 {
     public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)

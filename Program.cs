@@ -2,7 +2,10 @@
 
 using Utilities;
 
+// files must be copied to output directory so they can be referred to by relative path
 var filename = "music.csv";
+
+Console.WriteLine($"Hello {filename}");
 
 SongRequestManager.PrintColumnOptions();
 SongRequestManager.UserChoosesColumns(filename);
