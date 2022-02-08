@@ -59,8 +59,6 @@ foreach (Song song in songQueryResults)
     ConsoleWrite.WriteToConsole(message);
 }
 
-using (var writer = new StreamWriter("./Output.csv"))
-using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
-{
-    csvWriter.WriteRecords(songQueryResults);
-}
+string outPath = "./Output.csv";
+CSVWrite.WriteCSVtoPath<Song>(outPath, songQueryResults);
+ConsoleWrite.WriteToConsole("Done");
