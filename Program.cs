@@ -5,6 +5,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using playlistimport;
+using Utilities;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
@@ -25,7 +26,7 @@ var songYear = 2015;
 if (!string.IsNullOrEmpty(readYear))
 {
     songYear = int.Parse(readYear);
-    Console.WriteLine(songYear);
+    ConsoleWrite.WriteToConsole(songYear.ToString());
 }
 
 List<Song> records;
