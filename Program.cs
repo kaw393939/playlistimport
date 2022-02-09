@@ -12,13 +12,7 @@ using Utilities;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
-Console.WriteLine("Enter The Absolute File Path for the playlist\r");
-var absoluteFilePath = "";
-var filePath = Console.ReadLine();
-if (filePath == "")
-{
-    absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
-}
+var filePath = "data/music.csv";
 
 Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
