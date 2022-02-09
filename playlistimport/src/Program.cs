@@ -18,37 +18,14 @@ void Run()
 
     records = Utilities.RemoveDuplicateSongs(records.AccessRecords(), "name");
 
-    var songQuery = SongQueryByYear(records.AccessRecords(), GetYear());
+    var type = Utilities.ConsoleReadLineWithMessage("How would you like to filter the songs list?");
+    var value = Utilities.ConsoleReadLineWithMessage($"Please enter the {type} to filter by:");
+    var songQuery = new SongQueryByType(records.AccessRecords(), type, value);
     
     
-    Utilities.WriteToCsv(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery);
+    Utilities.WriteToCsv(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery.AccessList());
     Utilities.ConsoleWrite("Done Writing!");
 }
 
-List<Song> RemoveDuplicateSongs(List<Song> list)
-{
-    var distinctItems = list.GroupBy(x => x.Name).Select(y => y.First());
-    return distinctItems.ToList();
-}
-
-List<Song> SongQueryByYear(List<Song> songs, int year)
-{
-    //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
-    IEnumerable<Song> songQuery =
-        from song in songs
-        orderby song.Plays
-        where song.Year == new DateOnly(year,1,1)
-        select song;
-
-    var songQueryResults = songQuery.ToList();
-    var songCountCount = songQueryResults.Count.ToString();
-    Utilities.ConsoleWrite(songCountCount);
-    foreach (Song song in songQueryResults)
-    {
-        Utilities.ConsoleWrite("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
-    }
-
-    return songQueryResults;
-}
 
 Run();
