@@ -1,7 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
-using System.Globalization;
-using CsvHelper;
 using Utilities;
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
