@@ -11,21 +11,15 @@ using utilties;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
-void Run()
-{
-    var file = new GetFilePath(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the input file "));
-    var records = new ReadRecords<Song>(file.DisplayFilePath());
+var file = new GetFilePath(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the input file "));
+var records = new ReadRecords<Song>(file.DisplayFilePath());
 
-    records = Utilities.RemoveDuplicateSongs(records.AccessRecords(), "name");
+records = Utilities.RemoveDuplicateSongs(records.AccessRecords(), "name");
 
-    var type = Utilities.ConsoleReadLineWithMessage("How would you like to filter the songs list?");
-    var value = Utilities.ConsoleReadLineWithMessage($"Please enter the {type} to filter by:");
-    var songQuery = new SongQueryByType(records.AccessRecords(), type, value);
+var type = Utilities.ConsoleReadLineWithMessage("How would you like to filter the songs list?");
+var value = Utilities.ConsoleReadLineWithMessage($"Please enter the {type} to filter by:");
+var songQuery = new SongQueryByType(records.AccessRecords(), type, value);
     
     
-    Utilities.WriteToCsv(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery.AccessList());
-    Utilities.ConsoleWrite("Done Writing!");
-}
-
-
-Run();
+Utilities.WriteToCsv(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery.AccessList());
+Utilities.ConsoleWrite("Done Writing!");
