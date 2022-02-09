@@ -3,7 +3,8 @@
 using System.Globalization;
 using CsvHelper;
 using playlistimport;
-using utilites;
+using playlistimport.Methods;
+using utilties;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
 //if you are doing this from scratch or you can create the project with the solution by checking that
@@ -12,45 +13,16 @@ using utilites;
 
 void Run()
 {
-    var records = ReadRecords(GetFilePath());
-    var songQuery = SongQueryByYear(records, GetYear());
+    var file = new GetFilePath(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the input file "));
+    var records = new ReadRecords<Song>(file.DisplayFilePath());
+
+    records = Utilities.RemoveDuplicateSongs(records.AccessRecords(), "name");
+
+    var songQuery = SongQueryByYear(records.AccessRecords(), GetYear());
     
-    Utilities.WriteToCSV(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery);
+    
+    Utilities.WriteToCsv(Utilities.ConsoleReadLineWithMessage("Please Enter Absolute The Folder Path for the output file")+"output.csv",songQuery);
     Utilities.ConsoleWrite("Done Writing!");
-}
-
-string GetFilePath()
-{
-    var filePath = Utilities.ConsoleReadLineWithMessage("Enter The Absolute File Path for the playlist\r");
-    return string.IsNullOrEmpty(filePath) ? "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv" : filePath;
-}
-
-int GetYear()
-{
-    var readYear = Utilities.ConsoleReadLineWithMessage("Enter The year\r");
-    return !string.IsNullOrEmpty(readYear) ? int.Parse(readYear) : 2015;
-}
-
-List<Song> ReadRecords(string filePath)
-{
-    List<Song> records;
-    using (var reader = new StreamReader(filePath))
-    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-    {
-        csv.Context.RegisterClassMap<SongMap>();
-        Utilities.ConsoleWrite("Reading the CSV File\r");
-        records = csv.GetRecords<Song>().ToList();
-    }
-
-    Utilities.ConsoleWrite($"Record Count = {records.Count}\r");
-    Utilities.ConsoleWrite("_____________________________\r");
-
-    records = RemoveDuplicateSongs(records);
-    
-    Utilities.ConsoleWrite($"Distinct Record Count = {records.Count}\r");
-    Utilities.ConsoleWrite("_____________________________\r");
-
-    return records;
 }
 
 List<Song> RemoveDuplicateSongs(List<Song> list)
