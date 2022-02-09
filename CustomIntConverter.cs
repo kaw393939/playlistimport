@@ -2,8 +2,7 @@
 using CsvHelper.Configuration;
 using CsvHelper;
 
-namespace Utilities;
-
+namespace playlistimport;
 public class CustomIntConverter : DefaultTypeConverter
 {
     public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)

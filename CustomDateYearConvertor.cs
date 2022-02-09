@@ -2,7 +2,7 @@
 using CsvHelper.Configuration;
 using CsvHelper;
 
-namespace Utilities;
+namespace playlistimport;
 
 public class CustomDateYearConverter : DefaultTypeConverter
 {
