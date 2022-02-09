@@ -19,11 +19,16 @@ Console.WriteLine("Enter The year\r");
 var readYear = Console.ReadLine();
 if (readYear != String.Empty)
 {
-    songYear = int.Parse(readYear);
+    var songYear = int.Parse(readYear);
     ConsoleWrite.WriteToConsole(songYear.ToString());
 }
 
 //here is creating a new list type using a function
+List<T> CreateNewListOfType<T>()
+{
+    List<T> records = new List<T>();
+    return records;
+}
 var records = CreateNewListOfType<Song>();
 
 IEnumerable<Song> songs = new List<Song>();
