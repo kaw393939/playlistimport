@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "oC1C2hKivc6LRms3R7dZRpVvMWiDz4ocBeYSTTm4NDd98mQGmSX5q2w+Ca4peRR3v6YxCuIRUOrn1o/Gyv5Ocw==",
+  "success": true,
+  "projectFilePath": "D:\\OneDrive\\College\\Fourth Year - Semester Two\\IS421\\playlistimport\\utilites\\utilites.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\idota\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}
