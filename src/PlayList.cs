@@ -15,7 +15,6 @@ public class PlayList
         // Read songs from CSV
         var reader = new StreamReader(csvPath);
         var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-        
         var csv = new CsvReader(reader, config);
         var records = csv.GetRecords<RawSong>();
         foreach (var record in records)

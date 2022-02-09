@@ -3,7 +3,6 @@ using Music.util;
 namespace playlistimport;
 class Entry
 {
-
     static void Main(string[] args)
     {
         string csvPath = args[0];
