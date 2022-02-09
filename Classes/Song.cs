@@ -1,4 +1,4 @@
-﻿namespace playlistimport;
+﻿namespace playlistimport.Classes;
 
 public class Song
 {
