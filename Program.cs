@@ -7,15 +7,7 @@ using Utilities;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 var absoluteFilePath = UserInputs.GetFilePathUser();
-
-
-ConsoleWrite.WriteToConsole("Enter The year\r");
-var readYear = ConsoleRead.ReadConsole();
-var songYear = 2015;
-if (readYear != String.Empty)
-{
-    songYear = int.Parse(readYear);
-}
+var songYear = UserInputs.GetYearUser();
 //here is creating a new list type using a function
 
 
