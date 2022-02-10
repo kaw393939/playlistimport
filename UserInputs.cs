@@ -16,4 +16,17 @@ public class UserInputs
 
         return absoluteFilePath;
     }
+
+    public static int GetYearUser()
+    {
+        ConsoleWrite.WriteToConsole("Enter The year\r");
+        var readYear = ConsoleRead.ReadConsole();
+        var songYear = 2015;
+        if (readYear != String.Empty)
+        {
+            songYear = int.Parse(readYear);
+        }
+
+        return songYear;
+    }
 }
