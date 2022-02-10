@@ -6,13 +6,8 @@ using Utilities;
 //if you are doing this from scratch or you can create the project with the solution by checking that
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
-Console.WriteLine("Enter The Absolute File Path for the playlist\r");
-var absoluteFilePath = "";
-absoluteFilePath = ConsoleRead.ReadConsole();
-if (absoluteFilePath == "")
-{
-    absoluteFilePath = "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv";
-}
+var absoluteFilePath = UserInputs.GetFilePathUser();
+
 
 ConsoleWrite.WriteToConsole("Enter The year\r");
 var readYear = ConsoleRead.ReadConsole();
