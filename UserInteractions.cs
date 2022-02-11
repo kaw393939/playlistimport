@@ -34,25 +34,24 @@ public class UserInteractions
        }
 
        var chosenFilter = int.Parse(ConsoleRead.ReadFromConsole());
-       if (filterMethods.Count == chosenFilter) return filterMethods[chosenFilter - 1];
+       if (chosenFilter <= filterMethods.Count && chosenFilter > 0) return filterMethods[chosenFilter - 1];
        ConsoleWrite.WriteToConsole("ERROR: Method choice not found");
        return GetFilterMethodFromUser();
     }
 
-    public static int GetYearFromUser()
+    public static object GetXFromUser(string filterMethod)
     {
-        ConsoleWrite.WriteToConsole("Enter The year\r");
-        
-        var songYear = ConsoleRead.ReadFromConsole();
-        if (songYear == string.Empty)
+        ConsoleWrite.WriteToConsole($"Enter The {filterMethod}\r");
+        var result = ConsoleRead.ReadFromConsole();
+        var numResult = 0;
+        if (int.TryParse(result, out numResult))
         {
-            songYear = "2015";
+            return numResult;
         }
-
-        return int.Parse(songYear);;
+        return result;
     }
     
-    public static string GetArtistFromUser()
+    public static string GetStringFromUser(string filterMethod)
     {
         ConsoleWrite.WriteToConsole("Enter an artist\r");
         
@@ -63,5 +62,18 @@ public class UserInteractions
         }
 
         return artist;
+    }
+    
+    public static int GetIntFromUser(string filterMethod)
+    {
+        ConsoleWrite.WriteToConsole($"Enter an {filterMethod}\r");
+        
+        var result = ConsoleRead.ReadFromConsole();
+        if (result == string.Empty)
+        {
+            result = "2001";
+        }
+
+        return int.Parse(result);
     }
 }
