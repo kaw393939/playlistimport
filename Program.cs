@@ -46,11 +46,19 @@ ConsoleWrite.WriteToConsole("Total Songs By Artist: " + songs.Count.ToString());
 Print.PrintDashes();
 
 ConsoleWrite.WriteToConsole("Do you want to display the songs by year? (Y/N)\r");
-Print.ListOfSongs(songs);
-Print.PrintDashes();
+if (ConsoleRead.ReadFromConsole() == "Y")
+{
+    Print.ListOfSongs(songs);
+    Print.PrintDashes();
+}
+
 
 ConsoleWrite.WriteToConsole("Do you want to save these songs to csv? (Y/N)\r");
 //Output files to a CSV
-const string outputPath = "./Output.csv";
-CSVWriter.WriteCSVtoPath<Song>(outputPath, noDuplicates);
+if (ConsoleRead.ReadFromConsole() == "Y")
+{
+    const string outputPath = "./Output.csv";
+    CSVWriter.WriteCSVtoPath<Song>(outputPath, noDuplicates);
+}
+
 ConsoleWrite.WriteToConsole("Done");
