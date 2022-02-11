@@ -1,4 +1,5 @@
 ﻿using CsvHelper.Configuration;
+namespace playlistimport;
 public class SongMap : ClassMap<Song>
 {
     public SongMap()

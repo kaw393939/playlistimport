@@ -16,6 +16,7 @@ ConsoleWrite.WriteDashedLine();
 
 //removes duplicates
 var distinctItems = CustomLinqQuery.RemoveDuplicateSongs(records);
+
 //Query by specified year
 var songQueryResults = CustomLinqQuery.GetSongsByYr(distinctItems, songYear);
 
@@ -25,6 +26,8 @@ ConsoleWrite.WriteDashedLine();
 //Write Songs to console
 CustomConsoleWrite.WriteSongs(songQueryResults);
 
+//Output to CSV File
 string outPath = "./Output.csv";
 CSVWrite.WriteCSVtoPath(outPath, songQueryResults);
+
 ConsoleWrite.WriteToConsole("Done");
