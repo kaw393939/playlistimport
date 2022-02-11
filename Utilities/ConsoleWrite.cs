@@ -6,5 +6,9 @@ public class ConsoleWrite
     {
         Console.WriteLine(message);
     }
+    public static void WriteDashedLine()
+    {
+        Console.WriteLine("-----------------------------------------------------------------------");
+    }
 }
 
