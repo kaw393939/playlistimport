@@ -9,7 +9,7 @@ using Utilities;
 
 //Get the data from the user
 var filePath = UserInteractions.GetFilePathFromUser();
-var songYear = UserInteractions.GetYearFromUser();
+var artist = UserInteractions.GetArtistFromUser();
 
 //Read The CSV and Return Songs with the SongMap to correct empty values and convert to correct formats
 var records = CsvRead.FromPath<Song, SongMap>(filePath);
@@ -23,16 +23,17 @@ var noDuplicatesByName = CustomLinqQueries.RemoveDuplicatesBySongName(records);
 ConsoleWrite.WriteToConsole("Total after Duplicates by Song Name: " + noDuplicatesByName.Count.ToString());
 Print.PrintDashes();
 
-var songsByYear = CustomLinqQueries.GetSongsByYear(noDuplicatesByName, songYear);
-ConsoleWrite.WriteToConsole("Total Songs By Year: " + songsByYear.Count.ToString());
+//retrieves songs from artist
+var songsByArtist = CustomLinqQueries.GetSongsByArtist(noDuplicatesByName, artist);
+ConsoleWrite.WriteToConsole("Total Songs By Artist: " + songsByArtist.Count.ToString());
 Print.PrintDashes();
 
 ConsoleWrite.WriteToConsole("Do you want to display the songs by year? (Y/N)\r");
-Print.ListOfSongs(songsByYear);
+Print.ListOfSongs(songsByArtist);
 Print.PrintDashes();
 
 ConsoleWrite.WriteToConsole("Do you want to save these songs to csv? (Y/N)\r");
 //Output files to a CSV
-string outputPath = "./Output.csv";
+const string outputPath = "./Output.csv";
 CSVWriter.WriteCSVtoPath<Song>(outputPath, noDuplicates);
 ConsoleWrite.WriteToConsole("Done");
