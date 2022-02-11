@@ -6,10 +6,10 @@ namespace playlistimport;
 
 public class CsvRead
 {
-    public static List<T> FromPath<T,TMap>(string FilePath) where TMap : ClassMap
+    public static List<T> FromPath<T,TMap>(string filePath) where TMap : ClassMap
     {
         
-        using (var reader = new StreamReader(FilePath))
+        using (var reader = new StreamReader(filePath))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
             csv.Context.RegisterClassMap<TMap>();
