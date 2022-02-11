@@ -34,19 +34,13 @@ Print.PrintDashes();
 
 //retrieves songs from filterMethod
 
-List<Song>? songs = null;
-switch (filterMethod.ToLower())
+var songs = filterMethod.ToLower() switch
 {
-    case "artist":
-        songs = CustomLinqQueries.GetSongsByArtist(noDuplicatesByName, filterResult.ToString());
-        break;
-    case "genre":
-        songs = CustomLinqQueries.GetSongsByGenre(noDuplicatesByName, filterResult.ToString());
-        break;
-    case "year":
-        songs = CustomLinqQueries.GetSongsByYear(noDuplicatesByName, int.Parse(filterResult.ToString()));
-        break;
-}
+    "artist" => CustomLinqQueries.GetSongsByArtist(noDuplicatesByName, filterResult.ToString()!),
+    "genre" => CustomLinqQueries.GetSongsByGenre(noDuplicatesByName, filterResult.ToString()!),
+    "year" => CustomLinqQueries.GetSongsByYear(noDuplicatesByName, int.Parse(filterResult.ToString()!)),
+    _ => null
+};
 
 ConsoleWrite.WriteToConsole("Total Songs By Artist: " + songs.Count.ToString());
 Print.PrintDashes();
