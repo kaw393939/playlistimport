@@ -11,5 +11,11 @@ public class CustomLinqQuery
             select song;
         return songQuery.ToList();
     }
+
+    public static List<Song> RemoveDuplicateSongs(List<Song> Songs)
+    {
+        var results = Songs.GroupBy(x => x.Name).Select(y => y.First());
+        return results.ToList();
+    }
     
 }
