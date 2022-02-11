@@ -10,7 +10,7 @@ public class Print
         foreach (Song song in songQueryResults)
         {
   
-            StringBuilder text = new StringBuilder(song.Name + " " + song.Artist + " " +  song.Genre);
+            StringBuilder text = new StringBuilder(song.Name + " | " + song.Artist + " | " +  song.Genre);
             ConsoleWrite.WriteToConsole(text.ToString());
         }
     }
