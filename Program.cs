@@ -22,11 +22,8 @@ var songQueryResults = CustomLinqQuery.GetSongsByYr(distinctItems.ToList(), song
 ConsoleWrite.WriteToConsole($"Number of Songs from {songYear} = {songQueryResults.Count}\r");
 ConsoleWrite.WriteDashedLine();
 
-foreach (Song song in songQueryResults)
-{
-    var message = String.Format("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
-    ConsoleWrite.WriteToConsole(message);
-}
+//Write Songs to console
+CustomConsoleWrite.WriteSongs(songQueryResults);
 
 string outPath = "./Output.csv";
 CSVWrite.WriteCSVtoPath(outPath, songQueryResults);
