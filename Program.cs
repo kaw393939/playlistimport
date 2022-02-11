@@ -12,6 +12,7 @@ var records = CSVRead.FromPath<Song, SongMap>(absoluteFilePath);
 
 ConsoleWrite.WriteToConsole($"Number of CSV File Records = {records.Count}\r");
 ConsoleWrite.WriteToConsole("_____________________________\r");
+
 //removes duplicates
 var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
