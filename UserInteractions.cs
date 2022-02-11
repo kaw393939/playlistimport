@@ -17,6 +17,28 @@ public class UserInteractions
         return filePath;
     }
 
+    public static string GetFilterMethodFromUser()
+    {
+        var filterMethods = new List<string>
+        {
+            "Artist",
+            "Year",
+            "Genre"
+        };
+        ConsoleWrite.WriteToConsole("Please choose one of the following...");
+       var count = 0;
+       foreach (var filter in filterMethods)
+       {
+           count++;
+           ConsoleWrite.WriteToConsole($"[{count}] {filter}");
+       }
+
+       var chosenFilter = int.Parse(ConsoleRead.ReadFromConsole());
+       if (filterMethods.Count == chosenFilter) return filterMethods[chosenFilter - 1];
+       ConsoleWrite.WriteToConsole("ERROR: Method choice not found");
+       return GetFilterMethodFromUser();
+    }
+
     public static int GetYearFromUser()
     {
         ConsoleWrite.WriteToConsole("Enter The year\r");
