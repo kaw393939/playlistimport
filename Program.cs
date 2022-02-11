@@ -11,11 +11,11 @@ using Utilities.UserInteraction;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
-var filePath = FilePathOperations.GetFilePath("Enter The Absolute File Path for the playlist\r", 
-    "/Users/kwilliams/RiderProjects/playlistimport/data/music.csv");
+var filePath = FilePathOperations.GetFilePath(Printables.FilePathRequest(), 
+    Printables.DefaultFilePath());
 
 var records = CsvRead.ReadDistinctRecords(filePath, new SongMap());
 
-var songQuery = CustomQueries.SongByYear(records, FilePathOperations.GetInt("Enter The year\r", 2015));
+var songQuery = CustomQueries.SongByYear(records, FilePathOperations.GetInt(Printables.YearRequest(), Printables.DefaultYear()));
 
 CsvWrite.WriteListToCsv(songQuery);
