@@ -26,6 +26,16 @@ public class CustomLinqQueries
             select song;
         return songQuery.ToList();
     }
+    
+    public static List<Song> GetSongsByGenre(IEnumerable<Song> songs, string genre)
+    {
+        var songQuery =
+            from song in songs
+            orderby song.Plays
+            where song.Genre == genre
+            select song;
+        return songQuery.ToList();
+    }
 
     public static IEnumerable<string> GetGenres(IEnumerable<Song> songs)
     {
