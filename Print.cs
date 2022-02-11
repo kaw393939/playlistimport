@@ -14,6 +14,15 @@ public class Print
             ConsoleWrite.WriteToConsole(text.ToString());
         }
     }
+
+    public static void ListOfGenres(IEnumerable<string> genreQueryResults)
+    {
+        foreach (var genre in genreQueryResults)
+        {
+            ConsoleWrite.WriteToConsole(genre);
+        }
+    }
+    
     public static void PrintDashes()
     {
         ConsoleWrite.WriteToConsole("_____________________________\r");
