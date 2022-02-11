@@ -16,7 +16,7 @@ public class CustomQueries
         Console.WriteLine(songCountCount);
         foreach (Song song in songQueryResults)
         {
-            Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
+            Console.WriteLine("{0},{1},{2}",song.Name,song.Artist, song.Genre);
         }
 
         return songQueryResults;
