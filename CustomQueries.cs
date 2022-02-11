@@ -14,8 +14,6 @@ public class CustomQueries
             select song;
 
         var songQueryResults = songQuery.ToList();
-        //var songCountCount = songQueryResults.Count.ToString();
-        //Console.WriteLine(songCountCount);
         TablePrint.PrintSong(songQueryResults);
         return songQueryResults;
     }
