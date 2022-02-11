@@ -15,9 +15,9 @@ ConsoleWrite.WriteToConsole($"Number of CSV File Records = {records.Count}\r");
 ConsoleWrite.WriteDashedLine();
 
 //removes duplicates
-var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
-//https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/
-var songQueryResults = CustomLinqQuery.GetSongsByYr(distinctItems.ToList(), songYear);
+var distinctItems = CustomLinqQuery.RemoveDuplicateSongs(records);
+//Query by specified year
+var songQueryResults = CustomLinqQuery.GetSongsByYr(distinctItems, songYear);
 
 ConsoleWrite.WriteToConsole($"Number of Songs from {songYear} = {songQueryResults.Count}\r");
 ConsoleWrite.WriteDashedLine();
