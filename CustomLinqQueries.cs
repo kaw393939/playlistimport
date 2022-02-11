@@ -16,5 +16,15 @@ public class CustomLinqQueries
             select song;
         return songQuery.ToList();
     }
+    
+    public static List<Song> GetSongsByArtist(IEnumerable<Song> songs, string artist)
+    {
+        var songQuery =
+            from song in songs
+            orderby song.Plays
+            where song.Artist == artist
+            select song;
+        return songQuery.ToList();
+    }
 }
 
