@@ -18,7 +18,7 @@ public class CsvRead
         }
 
         Console.WriteLine($"Record Count = {records.Count}\r");
-        Printables.PrintDashSpacer();
+        Prints.PrintDashSpacer();
         return records;
     }
 
@@ -28,7 +28,7 @@ public class CsvRead
         records = ListOperations.RemoveDuplicates(records);
 
         Console.WriteLine($"Distinct Record Count = {records.Count}\r");
-        Printables.PrintDashSpacer();
+        Prints.PrintDashSpacer();
 
         return records;
     }

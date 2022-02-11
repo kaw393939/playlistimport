@@ -1,6 +1,6 @@
 ﻿namespace playlistimport.Utilities;
 
-public static class Printables
+public static class Prints
 {
     public static void PrintDashSpacer()
     {
