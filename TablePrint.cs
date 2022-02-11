@@ -2,7 +2,6 @@
 
 namespace Music.util;
 using ConsoleTables;
-//Console.WriteLine("{0},{1},{2}",song.Name,song.Artist, song.Genre);
 public static class TablePrint
 {
     public static void PrintSong(List<Song> songs)
