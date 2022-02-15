@@ -18,4 +18,6 @@ var records = CsvRead.ReadDistinctRecords(filePath, new SongMap());
 
 var songQuery = CustomQueries.SongByYear(records, GetTypeFromInput.GetInt("Enter The year\r", 2015));
 
+CustomPrintables.PrintSongList(songQuery);
+
 CsvWrite.WriteListToCsv(songQuery);

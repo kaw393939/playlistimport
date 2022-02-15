@@ -12,12 +12,6 @@ public class CustomQueries
             select song;
 
         var songQueryResults = songQuery.ToList();
-        var songCountCount = songQueryResults.Count.ToString();
-        Console.WriteLine(songCountCount);
-        foreach (Song song in songQueryResults)
-        {
-            Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
-        }
 
         return songQueryResults;
     }
