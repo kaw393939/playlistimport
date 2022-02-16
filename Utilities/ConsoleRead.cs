@@ -7,5 +7,12 @@ public class ConsoleRead
         var userInput = Console.ReadLine();
         return userInput;
     }
+
+    public static string ReadFromConsole(string message)
+    {
+        ConsoleWrite.WriteToConsole(message);
+        var userInput = Console.ReadLine();
+        return userInput;
+    }
 }
 
