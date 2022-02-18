@@ -13,6 +13,8 @@ using Utilities;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
+var absoluteFilePath = UserInput.GetFilePathUser();
+var songYear = UserInput.GetYearUser();
 
 //here is creating a new list type using a function
 List<T> CreateNewListOfType<T>()

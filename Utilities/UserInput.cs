@@ -2,7 +2,7 @@
 
 namespace playlistimport;
 
-public class UserInputs
+public class UserInput
 {
     public static string GetFilePathUser()
     {
