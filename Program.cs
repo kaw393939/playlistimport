@@ -13,15 +13,6 @@ using Utilities;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
-var filePath = "data/music.csv";
-
-Console.WriteLine("Enter The year\r");
-var readYear = Console.ReadLine();
-if (readYear != String.Empty)
-{
-    var songYear = int.Parse(readYear);
-    ConsoleWrite.WriteToConsole(songYear.ToString());
-}
 
 //here is creating a new list type using a function
 List<T> CreateNewListOfType<T>()
