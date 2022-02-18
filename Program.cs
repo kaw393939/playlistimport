@@ -24,16 +24,6 @@ List<T> CreateNewListOfType<T>()
 }
 var records = CreateNewListOfType<Song>();
 
-IEnumerable<Song> songs = new List<Song>();
-using (var reader = new StreamReader(absoluteFilePath))
-using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-{
-    csv.Context.RegisterClassMap<SongMap>();
-    Console.WriteLine("Reading the CSV File\r");
-    records = csv.GetRecords<Song>().ToList();
-
-}
-
 Console.WriteLine($"Record Count = {records.Count}\r");
 
 //removes duplicates
@@ -53,9 +43,4 @@ foreach (Song song in songQueryResults)
     Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
 }
 
-using (var writer = new StreamWriter("./Output.csv"))
-using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
-{
-    csvWriter.WriteRecords(songQueryResults);
-}
 Console.WriteLine("Done");
