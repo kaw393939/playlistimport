@@ -1,12 +1,16 @@
-﻿using Music;
-using Music.util;
-namespace playlistimport;
+﻿using System.Runtime.CompilerServices;
+using Music;
+using CsvHelper;
+
+namespace Music;
 class Entry
 {
     static void Main(string[] args)
     {
-        string csvPath = args[0];
-        PlayList playList = PlayList.GetInstance(csvPath);
-        SongUtil.PrintSongs(playList);
+        List<Song> songs = UserInteraction.GetSongsFromInput();
+        int yearOfSearch = UserInteraction.GetYearFromInput();
+        List<Song> songsInThatYear = GetSongByYear.GetSongsByYear(songs, yearOfSearch);
+        SongUtil.PrintSongs(songsInThatYear);
+        UserInteraction.writeToCsvFileByUserInputFilePath(songsInThatYear);
     }
 }
