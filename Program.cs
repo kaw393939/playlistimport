@@ -25,7 +25,7 @@ List<T> CreateNewListOfType<T>()
 var records = CreateNewListOfType<Song>();
 
 IEnumerable<Song> songs = new List<Song>();
-using (var reader = new StreamReader(filePath))
+using (var reader = new StreamReader(absoluteFilePath))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     csv.Context.RegisterClassMap<SongMap>();
@@ -35,7 +35,6 @@ using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 }
 
 Console.WriteLine($"Record Count = {records.Count}\r");
-Console.WriteLine("_____________________________\r");
 
 //removes duplicates
 var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
