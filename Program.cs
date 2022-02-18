@@ -6,6 +6,7 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using playlistimport;
 using playlistimport.Classes;
+using playlistimport.Utilities;
 using Utilities;
 
 //you will need to run "dotnet add package CsvHelper" inside the consoleApp2 Project folder or create the project
@@ -13,8 +14,10 @@ using Utilities;
 //box when you create it and just add it in the project solution directory
 //put the path to the file you want to import
 
-var absoluteFilePath = UserInput.GetFilePathUser();
-var songYear = UserInput.GetYearUser();
+var absoluteFilePath = UserInput.GetFilePath();
+var songYear = UserInput.GetYear();
+
+var records = ReadCSV.FromCSV<Song, SongMap>(absoluteFilePath);
 
 //here is creating a new list type using a function
 List<T> CreateNewListOfType<T>()
@@ -22,9 +25,9 @@ List<T> CreateNewListOfType<T>()
     List<T> records = new List<T>();
     return records;
 }
-var records = CreateNewListOfType<Song>();
+/*var records = CreateNewListOfType<Song>();
 
-Console.WriteLine($"Record Count = {records.Count}\r");
+Console.WriteLine($"Record Count = {records.Count}\r"); */
 
 //removes duplicates
 var distinctItems = records.GroupBy(x => x.Name).Select(y => y.First());
@@ -43,4 +46,4 @@ foreach (Song song in songQueryResults)
     Console.WriteLine("{0},{1}, {2}",song.Name,song.Artist, song.Genre);
 }
 
-Console.WriteLine("Done");
+

@@ -1,10 +1,10 @@
 ﻿using Utilities;
 
-namespace playlistimport;
+namespace playlistimport.Utilities;
 
 public class UserInput
 {
-    public static string GetFilePathUser()
+    public static string GetFilePath()
     {
         Console.WriteLine("Enter The Absolute File Path for the playlist\r");
         var absoluteFilePath = "";
@@ -17,7 +17,7 @@ public class UserInput
         return absoluteFilePath;
     }
 
-    public static int GetYearUser()
+    public static int GetYear()
     {
         ConsoleWrite.WriteToConsole("Enter The year\r");
         var readYear = ConsoleRead.ReadConsole();
